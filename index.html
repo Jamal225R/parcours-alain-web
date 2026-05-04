@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours Alain – Mobilité Académique Internationale</title>
+    <style>
+        :root {
+            --color-navy: #0D2C42;
+            --color-green: #4CB8A5;
+            --color-orange: #E8854C;
+            --color-cyan: #17A2B8;
+            --color-bg-light: #F5F7FA;
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #666;
+            --font-display: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --shadow-sm: 0 2px 8px rgba(13, 44, 66, 0.08);
+            --shadow-md: 0 4px 16px rgba(13, 44, 66, 0.12);
+            --shadow-lg: 0 8px 32px rgba(13, 44, 66, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 1px solid var(--color-bg-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-navy);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-cyan) 100%);
+            color: white;
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto var(--spacing-lg);
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.95;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-info {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: var(--spacing-lg) 0;
+            font-size: 0.95rem;
+        }
+
+        .hero-info span {
+            background: rgba(255, 255, 255, 0.15);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--color-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: var(--spacing-md);
+            box-shadow: 0 4px 15px rgba(232, 133, 76, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #d66f39;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 133, 76, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-logo {
+                max-width: 200px;
+            }
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* SECTION MODULES */
+        .modules-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: var(--color-bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--color-navy);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+
+        .module-accordion {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .module-accordion:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .accordion-header {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: linear-gradient(90deg, var(--color-navy) 0%, var(--color-cyan) 100%);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            padding-left: calc(var(--spacing-lg) + 0.5rem);
+        }
+
+        .accordion-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            width: 30px;
+            text-align: center;
+        }
+
+        .module-accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .module-accordion.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: var(--spacing-lg);
+            border-top: 2px solid var(--color-bg-light);
+        }
+
+        .accordion-body h4 {
+            color: var(--color-orange);
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .accordion-body p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* SECTION MOT DU FORMATEUR */
+        .mentor-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: white;
+        }
+
+        .mentor-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .mentor-text h2 {
+            font-size: 2rem;
+            color: var(--color-navy);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+        }
+
+        .mentor-text p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+
+        .mentor-name {
+            font-weight: 700;
+            color: var(--color-navy);
+            font-size: 1.05rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .mentor-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mentor-text h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* SECTION DOWNLOADS */
+        .downloads-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: var(--color-bg-light);
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .download-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .download-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .download-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .download-card h3 {
+            font-size: 1.1rem;
+            color: var(--color-navy);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .download-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            flex-grow: 1;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--color-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #3d9784;
+            transform: translateY(-2px);
+        }
+
+        /* SECTION MENTORAT */
+        .mentoring-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-cyan) 100%);
+            color: white;
+        }
+
+        .mentoring-section h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .mentoring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .mentoring-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mentoring-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .mentoring-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .mentoring-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* SECTION CONTACT */
+        .contact-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: var(--color-bg-light);
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            color: var(--color-navy);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-info a {
+            color: var(--color-navy);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            color: var(--color-green);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-navy);
+            color: white;
+            padding: var(--spacing-lg);
+            text-align: center;
+            border-top: 3px solid var(--color-green);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--color-green);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            color: var(--color-cyan);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVITÉ */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-info {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .accordion-header {
+                padding: var(--spacing-md);
+            }
+
+            .accordion-body {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* ESCAPE GAME */
+        .escape-game-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-orange) 0%, #FF9A56 100%);
+            color: white;
+            border-radius: 12px;
+            margin: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        .escape-game-section h2 {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.8rem;
+        }
+
+        .escape-game-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .escape-game-content p {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        .escape-game-btn {
+            display: inline-block;
+            background: white;
+            color: var(--color-orange);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .escape-game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .module-accordion {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .module-accordion:nth-child(1) { animation-delay: 0.1s; }
+        .module-accordion:nth-child(2) { animation-delay: 0.2s; }
+        .module-accordion:nth-child(3) { animation-delay: 0.3s; }
+        .module-accordion:nth-child(4) { animation-delay: 0.4s; }
+        .module-accordion:nth-child(5) { animation-delay: 0.5s; }
+        .module-accordion:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">📍 Parcours Alain</a>
+            <ul class="nav-links">
+                <li><a href="#programme">Programme</a></li>
+                <li><a href="#mot-formateur">Mot du formateur</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#mentorat">Mentorat</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Parcours Alain</h1>
+            <p class="subtitle">Mobilité Académique Internationale</p>
+            <div class="hero-info">
+                <span>📅 Démarrage : 15 juillet 2026</span>
+                <span>💻 100% en ligne</span>
+                <span>🌍 Mentorat collectif mensuel</span>
+            </div>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                Manifestez votre intérêt
+            </button>
+        </div>
+    </section>
+
+    <!-- PROGRAMME -->
+    <section id="programme" class="modules-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Le Programme en 6 Modules</h2>
+                <p>Un parcours structuré de 2h par module, conçu pour transformer votre rêve en projet réaliste et aligné avec votre avenir</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Module 1 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 1 — Clarifier son projet</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Comprendre vos motivations profondément. Identifier vos contraintes (budget, famille, localisation). Définir vos objectifs académiques et professionnels réalistes.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Auto-diagnostic de votre projet, identification de vos forces et freins, clarification de vos motivations réelles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 2 — Choisir sa destination</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Explorer les options par pays, ville et niveau d'étude. Comparer sur critères : qualité, coûts, débouchés, faisabilité. Valider votre choix final.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Mapping des destinations, comparaison d'universités, analyse coûts-bénéfices, sélection finale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 3 — Construire un projet cohérent</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Relier votre parcours antérieur à la formation visée. Montrer comment cette formation sert votre projet professionnel. Anticiper les compétences à développer.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Narration de votre parcours, alignement académique-professionnel, identification des compétences clés.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 4 — Préparer son dossier</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Produire un CV percutant. Rédiger une lettre de motivation convaincante. Documenter votre projet d'études. Préparer vos références.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Production et révision CV, rédaction lettre motivation, statement of purpose, préparation références.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 5 — Préparer la mobilité</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Anticiper logement, budget, formalités. Construire votre stratégie administrative. Préparer votre intégration culturelle et sociale.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Plan logistique, budget détaillé, formalités administratives, préparation culturelle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module-accordion">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span class="accordion-title">Module 6 — Penser l'après-formation</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4>Durée : 2h</h4>
+                            <p><strong>Objectif :</strong> Construire votre réseau pendant vos études. Identifier les opportunités de stage et d'emploi. Planifier votre retour ou votre installation.</p>
+                            <p><strong>Ce que vous allez faire :</strong> Stratégie réseau, recherche stage/emploi, préparation carrière post-études.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESCAPE GAME -->
+            <div class="escape-game-section">
+                <h2>🎮 Défi Bonus : Décodeur d'Admission</h2>
+                <div class="escape-game-content">
+                    <p>Un quiz interactif pour maîtriser les critères d'admission et décoder les exigences des universités.</p>
+                    <button class="escape-game-btn" onclick="alert('Activité bonus disponible à la fin de la formation.')">Lancez le défi</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOT DU FORMATEUR -->
+    <section id="mot-formateur" class="mentor-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mot du Formateur</h2>
+                <p>Lassina Jamal Traoré vous présente Parcours Alain</p>
+            </div>
+            <div class="mentor-content">
+                <div class="mentor-text">
+                    <h2>Pourquoi Parcours Alain ?</h2>
+                    <p>Pendant des années, j'ai accompagné des étudiants africains qui rêvaient de poursuivre leurs études à l'étranger. Et j'ai vu le même pattern : beaucoup de motivation, mais peu de méthode.</p>
+                    <p>Dossiers faibles. Choix mal alignés. Isolement dans le parcours.</p>
+                    <p><strong>Parcours Alain, c'est ma réponse.</strong> Un accompagnement structuré, clair, orienté vers la réussite académique ET l'employabilité.</p>
+                    <p style="margin-top: var(--spacing-lg); color: var(--color-green); font-weight: 600;">— <span class="mentor-name">Lassina Jamal Traoré</span>, Learning Architect</p>
+                </div>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Parcours Alain — Présentation" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCUMENTS À TÉLÉCHARGER -->
+    <section id="documents" class="downloads-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ressources à Télécharger</h2>
+                <p>Tous les guides et documents pour structurer votre mobilité</p>
+            </div>
+
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-icon">📋</div>
+                    <h3>Programme Détaillé</h3>
+                    <p>Structure complète, modules, objectifs et activités d'apprentissage.</p>
+                    <a href="programme.pdf" download class="download-btn">Télécharger PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">📖</div>
+                    <h3>Livret Stagiaire</h3>
+                    <p>Guide complet avec ressources, calendrier, glossaire et contacts.</p>
+                    <a href="livret-stagiaire.pdf" download class="download-btn">Télécharger PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">✅</div>
+                    <h3>Checklist Candidature</h3>
+                    <p>Liste exhaustive de tous les documents à préparer pour votre dossier.</p>
+                    <a href="checklist-candidature.pdf" download class="download-btn">Télécharger PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="download-icon">⏱️</div>
+                    <h3>Timeline Mobilité</h3>
+                    <p>Calendrier réaliste mois par mois pour votre mobilité (12-15 mois).</p>
+                    <a href="timeline-mobilite.pdf" download class="download-btn">Télécharger PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENTORAT -->
+    <section id="mentorat" class="mentoring-section">
+        <div class="container">
+            <h2>Mentorat Collectif Mensuel</h2>
+            <div class="mentoring-grid">
+                <div class="mentoring-card">
+                    <h3>🎥 Sessions en direct</h3>
+                    <p>Webinaires interactifs (1h30) pour approfondir les apprentissages, poser vos questions et bénéficier du retour d'experts.</p>
+                </div>
+
+                <div class="mentoring-card">
+                    <h3>👥 Communauté de pairs</h3>
+                    <p>Connectez-vous avec d'autres candidats, partagez vos défis et bénéficiez du soutien d'une communauté motivée.</p>
+                </div>
+
+                <div class="mentoring-card">
+                    <h3>💡 Q&A en direct</h3>
+                    <p>Posez toutes vos questions et obtenez des réponses claires, adaptées à votre situation spécifique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Manifestez Votre Intérêt</h2>
+                <p>Première cohorte : démarrage 15 juillet 2026</p>
+            </div>
+
+            <div class="contact-info">
+                <h3 style="color: var(--color-navy); margin-bottom: var(--spacing-md); font-size: 1.3rem;">Contactez-moi directement</h3>
+                <p><strong>Formateur :</strong> Lassina Jamal Traoré</p>
+                <p><strong>Email :</strong> <a href="mailto:jamaltraore707@gmail.com">jamaltraore707@gmail.com</a></p>
+                <p style="font-size: 0.95rem; color: var(--color-text-light); margin-top: var(--spacing-lg);">
+                    Écrivez-moi pour exprimer votre intérêt, poser vos questions ou demander plus d'informations sur le programme.
+                </p>
+                <button class="cta-button" style="margin-top: var(--spacing-lg);" onclick="window.location.href='mailto:jamaltraore707@gmail.com'">
+                    ✉️ Envoyer un email
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À Propos</h3>
+                <p>Parcours Alain est une solution complète de mobilité académique, conçue pour aider les étudiants africains à construire des projets d'études réalistes et alignés avec leur avenir professionnel.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Ressources</h3>
+                <p><a href="programme.pdf" download>Programme</a></p>
+                <p><a href="livret-stagiaire.pdf" download>Livret Stagiaire</a></p>
+                <p><a href="checklist-candidature.pdf" download>Checklist</a></p>
+                <p><a href="timeline-mobilite.pdf" download>Timeline</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Politique d'Inclusion</h3>
+                <p>Nous nous engageons à créer un environnement inclusif pour tous les apprenants, indépendamment de leur situation de handicap ou de toute autre caractéristique.</p>
+                <p><a href="#inclusion">Politique complète d'inclusion et de gestion du handicap</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Parcours Alain — Mobilité Académique Internationale | Réalisé avec bienveillance pour la transformation des compétences.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll et gestion accordéon
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-fermeture accordéon
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const parent = this.parentElement;
+                const isActive = parent.classList.contains('active');
+                
+                // Fermer tous les autres
+                document.querySelectorAll('.module-accordion').forEach(mod => {
+                    if (mod !== parent && mod.classList.contains('active')) {
+                        mod.classList.remove('active');
+                    }
+                });
+                
+                // Toggle actuel
+                if (isActive) {
+                    parent.classList.remove('active');
+                } else {
+                    parent.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
